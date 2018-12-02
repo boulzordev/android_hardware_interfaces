@@ -159,6 +159,13 @@ struct HealthConfig {
      * (POWER_SUPPLY_PROP_CYCLE_COUNT)
      */
     string batteryCycleCountPath;
+    
+    string modChargeFullPath;
+    string modCapacityPath;
+    string modStatusPath;
+    string modTypePath;
+    string modRechargeStartLevelPath;
+    string modRechargeStopLevelPath;
 };
 
 /**
@@ -210,4 +217,8 @@ struct HealthInfo {
 
     /** Battery technology, e.g. "Li-ion, Li-Poly" etc. */
     string batteryTechnology;
+    int32_t modLevel;
+    int32_t modStatus;
+    int32_t modType;
+    int32_t modFlag;
 };

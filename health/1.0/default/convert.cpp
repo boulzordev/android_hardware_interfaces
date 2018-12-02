@@ -39,6 +39,12 @@ void convertToHealthConfig(const struct healthd_config *hc, HealthConfig& config
     config.batteryFullChargePath    = hc->batteryFullChargePath.string();
     config.batteryCycleCountPath    = hc->batteryCycleCountPath.string();
 
+    config.modChargeFullPath    = hc->modChargeFullPath.string();
+    config.modCapacityPath    = hc->modCapacityPath.string();
+    config.modStatusPath    = hc->modStatusPath.string();
+    config.modTypePath    = hc->modTypePath.string();
+    config.modRechargeStartLevelPath    = hc->modRechargeStartLevelPath.string();
+    config.modRechargeStopLevelPath    = hc->modRechargeStopLevelPath.string();
 }
 
 void convertFromHealthConfig(const HealthConfig& c, struct healthd_config *hc) {
@@ -93,6 +99,25 @@ void convertFromHealthConfig(const HealthConfig& c, struct healthd_config *hc) {
         android::String8(c.batteryCycleCountPath.c_str(),
                          c.batteryCycleCountPath.size());
 
+    hc->modChargeFullPath =
+        android::String8(c.modChargeFullPath.c_str(),
+                         c.modChargeFullPath.size());
+
+    hc->modStatusPath =
+        android::String8(c.modStatusPath.c_str(),
+                         c.modStatusPath.size());
+
+    hc->modTypePath =
+        android::String8(c.modTypePath.c_str(),
+                         c.modTypePath.size());
+
+    hc->modRechargeStartLevelPath =
+        android::String8(c.modRechargeStartLevelPath.c_str(),
+                         c.modRechargeStartLevelPath.size());
+
+    hc->modRechargeStopLevelPath =
+        android::String8(c.modRechargeStopLevelPath.c_str(),
+                         c.modRechargeStopLevelPath.size());
     // energyCounter is handled through special means so all calls to
     // the function go across the HALs
 
@@ -119,6 +144,10 @@ void convertToHealthInfo(const struct android::BatteryProperties *p,
     info.batteryFullCharge      = p->batteryFullCharge;
     info.batteryChargeCounter   = p->batteryChargeCounter;
     info.batteryTechnology      = p->batteryTechnology;
+    info.modLevel               = p->modLevel;
+    info.modStatus              = p->modStatus;
+    info.modType                = p->modType;
+    info.modFlag                = p->modFlag;
 }
 
 void convertFromHealthInfo(const HealthInfo& info,
@@ -139,6 +168,10 @@ void convertFromHealthInfo(const HealthInfo& info,
     p->batteryFullCharge        = info.batteryFullCharge;
     p->batteryChargeCounter     = info.batteryChargeCounter;
     p->batteryTechnology        = android::String8(info.batteryTechnology.c_str());
+    p->modLevel                 = info.modLevel;
+    p->modStatus                = info.modStatus;
+    p->modType                  = info.modType;
+    p->modFlag                  = info.modFlag;
 }
 
 } // namespace hal_conversion
