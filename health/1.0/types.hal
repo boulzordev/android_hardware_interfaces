@@ -164,6 +164,7 @@ struct HealthConfig {
     string modCapacityPath;
     string modStatusPath;
     string modTypePath;
+    string modPowerSourcePath;
     string modRechargeStartLevelPath;
     string modRechargeStopLevelPath;
 };
@@ -221,4 +222,5 @@ struct HealthInfo {
     int32_t modStatus;
     int32_t modType;
     int32_t modFlag;
+	int32_t modPowerSource;
 };

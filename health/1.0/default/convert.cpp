@@ -43,6 +43,7 @@ void convertToHealthConfig(const struct healthd_config *hc, HealthConfig& config
     config.modCapacityPath    = hc->modCapacityPath.string();
     config.modStatusPath    = hc->modStatusPath.string();
     config.modTypePath    = hc->modTypePath.string();
+	config.modPowerSourcePath = hc->modPowerSourcePath.string();
     config.modRechargeStartLevelPath    = hc->modRechargeStartLevelPath.string();
     config.modRechargeStopLevelPath    = hc->modRechargeStopLevelPath.string();
 }
@@ -111,6 +112,10 @@ void convertFromHealthConfig(const HealthConfig& c, struct healthd_config *hc) {
         android::String8(c.modTypePath.c_str(),
                          c.modTypePath.size());
 
+    hc->modPowerSourcePath =
+        android::String8(c.modPowerSourcePath.c_str(),
+                         c.modPowerSourcePath.size());
+
     hc->modRechargeStartLevelPath =
         android::String8(c.modRechargeStartLevelPath.c_str(),
                          c.modRechargeStartLevelPath.size());
@@ -148,6 +153,7 @@ void convertToHealthInfo(const struct android::BatteryProperties *p,
     info.modStatus              = p->modStatus;
     info.modType                = p->modType;
     info.modFlag                = p->modFlag;
+	info.modPowerSource         = p->modPowerSource;
 }
 
 void convertFromHealthInfo(const HealthInfo& info,
@@ -172,6 +178,7 @@ void convertFromHealthInfo(const HealthInfo& info,
     p->modStatus                = info.modStatus;
     p->modType                  = info.modType;
     p->modFlag                  = info.modFlag;
+	p->modPowerSource           = info.modPowerSource;
 }
 
 } // namespace hal_conversion
